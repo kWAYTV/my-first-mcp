@@ -11,8 +11,7 @@
   "scripts": {
     "dev": "tsx watch index.ts",
     "lint": "eslint --fix .",
-    "ins": "npx -y @modelcontextprotocol/inspector npx -y tsx index.ts",
-    "bump": "bumpp"
+    "ins": "npx -y @modelcontextprotocol/inspector npx -y tsx index.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.0",
@@ -22,7 +21,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.12.0",
     "@types/node": "^22.14.1",
-    "bumpp": "^10.1.0",
     "eslint": "^9.24.0",
     "eslint-plugin-format": "^1.0.1"
   }

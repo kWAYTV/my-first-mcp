@@ -1,14 +1,14 @@
-import antfu from '@antfu/eslint-config'
+import antfu from '@antfu/eslint-config';
 
 export default antfu({
-  type: 'app',
   typescript: true,
   formatters: true,
   stylistic: {
     indent: 2,
     semi: true,
-    quotes: 'double',
+    quotes: 'single',
   },
+  ignores: ['node_modules', 'dist'],
 }, {
   rules: {
     'no-console': ['warn'],
@@ -23,4 +23,4 @@ export default antfu({
       ignore: ['README.md'],
     }],
   },
-})
+});

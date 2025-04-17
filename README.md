@@ -1,6 +1,6 @@
 # My First MCP - Weather Server
 
-A simple Model Context Protocol (MCP) server that provides weather information for any city.
+A simple [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server that provides weather information for any city.
 
 ## Installation
 
@@ -13,7 +13,7 @@ pnpm install
 
 ## Running the Server
 
-1. Start the server with the inspector:
+1. Start the server with the [inspector](https://modelcontextprotocol.io/docs/tools/inspector):
 
 ```bash
 pnpm ins

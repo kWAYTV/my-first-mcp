@@ -2,6 +2,10 @@
 
 A simple [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server that provides weather information for any city.
 
+## Disclaimer
+
+This is a proof-of-concept implementation meant to demonstrate basic MCP server functionality. It does not include data validation, error handling, rate limiting, or other production-ready features. Use it as a learning resource to understand how to build MCP servers.
+
 ## Installation
 
 1. Clone the repository

@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "tsx watch index.ts",
     "lint": "eslint --fix .",
+    "ins": "npx -y @modelcontextprotocol/inspector npx -y tsx index.ts",
     "bump": "bumpp"
   },
   "dependencies": {

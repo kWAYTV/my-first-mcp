@@ -1,27 +1,29 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { z } from 'zod';
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
 const server = new McpServer({
-  name: 'my-first-mcp',
-  version: '0.0.1',
+  name: "my-first-mcp",
+  version: "0.0.1",
 });
 
 server.tool(
-  'fetch-weather',
-  'Fetch the weather for a given city',
+  "fetch-weather",
+  "Fetch the weather for a given city",
   {
-    city: z.string().describe('The city to fetch the weather for'),
+    city: z.string().describe("The city to fetch the weather for"),
   },
   async ({ city }) => {
     try {
-      const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=en&format=json`);
+      const response = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=en&format=json`
+      );
       const data = await response.json();
 
       if (!data.results?.length) {
         return {
           content: [
-            { type: 'text', text: `No weather data found for ${city}` },
+            { type: "text", text: `No weather data found for ${city}` },
           ],
         };
       }
@@ -29,34 +31,37 @@ server.tool(
       const { latitude, longitude } = data.results[0];
 
       try {
-        const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current=temperature_2m,precipitation,is_day,rain&forecast_days=1`);
+        const weatherResponse = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current=temperature_2m,precipitation,is_day,rain&forecast_days=1`
+        );
         const weatherData = await weatherResponse.json();
 
         return {
           content: [
             {
-              type: 'text',
+              type: "text",
               text: JSON.stringify(weatherData, null, 2),
             },
           ],
         };
-      }
-      catch (weatherError) {
+      } catch (weatherError) {
         return {
           content: [
-            { type: 'text', text: `Error fetching weather data: ${weatherError.message}` },
+            {
+              type: "text",
+              text: `Error fetching weather data: ${weatherError.message}`,
+            },
           ],
         };
       }
-    }
-    catch (error) {
+    } catch (error) {
       return {
         content: [
-          { type: 'text', text: `Error processing request: ${error.message}` },
+          { type: "text", text: `Error processing request: ${error.message}` },
         ],
       };
     }
-  },
+  }
 );
 
 const transport = new StdioServerTransport();
